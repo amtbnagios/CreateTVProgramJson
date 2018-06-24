@@ -1,0 +1,86 @@
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4009&volid=5239
+XML parsing exception
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4009&volid=5240
+XML parsing exception
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4009&volid=5243
+XML parsing exception
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5858
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5859
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5860
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5861
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5862
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5863
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5864
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5865
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5866
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
+http://www.amtb.tw/app/unicast2xml.asp?act=4&amtbid=62&subamtbid=168&lectureid=4335&volid=5867
+java.lang.IllegalStateException: BEGIN_OBJECT expected, but met STRING
+Scopes: INSIDE_OBJECT>NAME>INSIDE_OBJECT
+Closed tags: 'list'/2
+Token: null
+Tokens queue: null
+Values queue: , null
+
