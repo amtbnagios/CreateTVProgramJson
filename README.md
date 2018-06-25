@@ -1,11 +1,11 @@
-# AmtbTV节目创建工具
+# AmtbTV节目创建工具#
 本软件用于为AmtbTV创建节目列表，并生成缩图。<br>
 创建的节目列表文件为：json/tvprogram.txt<br>
 
-##本软件使用FFMpeg生成缩略图
+##本软件使用FFMpeg生成缩略图##
 请安装FFMpeg软件，并加入运行路径中，可以通过输入ffmpeg在当前目录下运行。
 
-##简单使用
+##简单使用##
 在终端中输入命令 java -jar CreateTVProgramJson.jar<br>
 本命令将从 www.amtb.tw/app/unicast2xml.asp 获取节目数据。并去除无视频的节目，新添加的节目生成缩图。<br>
 为了提高效率，将忽略update文件夹中下列文件中指定的数据：<br>
