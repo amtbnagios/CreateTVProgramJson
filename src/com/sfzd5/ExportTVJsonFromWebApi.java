@@ -56,7 +56,7 @@ public class ExportTVJsonFromWebApi {
             if (!dirVol.exists()) dirVol.mkdir();
         }
 
-        programsFile = new File("json", "program.txt");
+        programsFile = new File("json", "tvprogram.txt");
         if(programsFile.exists()) {
             try {
                 String json = FileUtils.readFileToString(programsFile, "utf-8");
@@ -264,7 +264,7 @@ public class ExportTVJsonFromWebApi {
     }
 
     private void createPic(String identifier, String filename){
-        File tsFile = DownTs.downTs(identifier, filename);
+        File tsFile = CreatePic.downTs(identifier, filename);
         if (tsFile!=null && tsFile.exists()) {
             //String mediaUrl = "http://amtbsg.cloudapp.net/redirect/vod/_definst_/mp4/" + us[0] + "/" + item.identifier + "/" + item.filename + "/playlist.m3u8";
             String mediaUrl = tsFile.getAbsolutePath();

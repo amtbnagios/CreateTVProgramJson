@@ -16,37 +16,33 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DownTs {
+public class CreatePic {
 
     static Pattern idPattern = Pattern.compile("chunklist_([^\\.]*)\\.m3u8");
     int total=0;
 
     //服务器，每个服务器一个线程
-    String[] servers = new String[]{
-            "hk1.hwadzan.com",
-            "tw2.hwadzan.com",
-            "de1.hwadzan.com",
-            "tw4.hwadzan.com",
-            "hk2.hwadzan.com",
-            "tw3.hwadzan.com",
-            "js1.amtb.cn",
-            "hz1.hwadzan.net"
-    };
+    List<String> servers;
     //线程安全list存放结果
     private Object obj = new Object();
     private Stack<Program> createProgramPicItemStack;
 
     private int threadCount = 0;
 
-    public DownTs(List<Program> programs){
+    public CreatePic(List<Program> programs){
         createProgramPicItemStack = new Stack<>();
         createProgramPicItemStack.addAll(programs);
         total = programs.size();
+        try {
+            servers = FileUtils.readLines(new File("update", "servers.txt"), "utf-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
-        for (int i = 0; i < servers.length; i++) {
-            final String[] server = {servers[i]};
+        for (int i = 0; i < servers.size(); i++) {
+            final String[] server = {servers.get(i)};
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -83,7 +79,14 @@ public class DownTs {
                 Matcher matcher = idPattern.matcher(m3u8);
                 if (matcher.find()) {
                     //media_w1259047207_9.ts
-                    downFile(client, mediaUrl + "media_" + matcher.group(1) + "_9.ts", tsFile);
+                    boolean ok = downFile(client, mediaUrl + "media_" + matcher.group(1) + "_9.ts", tsFile);
+                    if(ok && tsFile.exists()){
+                        boolean t = CreateProgramPicByFFMpeg.makeScreenCut(tsFile.getAbsolutePath(), "00:00:06", item.identifier + "_bg.jpg", item.identifier + "_card.jpg", false);
+                        if (t)
+                            System.out.println("创建缩图完成 " + item.identifier);
+                        else
+                            System.out.println("创建缩图出错 " + item.identifier);
+                    }
                     System.out.println(String.format("完成 %s ，还有 %d 个", item.identifier, total));
                 } else {
                     System.out.println("出错 " + item.identifier);

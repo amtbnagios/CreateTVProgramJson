@@ -16,26 +16,34 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        exportWithUpdateAll();
+        if(args!=null){
+            if(args.length>0){
+                String parm = args[0];
+                if(parm.toLowerCase().equals("createpic")){
+                    createPic();
+                } else if(parm.toLowerCase().equals("removeerrprogram")){
+                    removeErrProgram();
+                } else if(parm.toLowerCase().equals("updateids")){
+                    updateIds();
+                } else if(parm.toLowerCase().equals("printprograms")){
+                    printPrograms();
+                } else if(parm.toLowerCase().equals("checkprogrampic")){
+                    checkProgramPic();
+                }
+            } else {
+                exportWithUpdateAll();
+            }
+        }
     }
 
-    static void exportUpdateIds(){
-        File pfile = new File("updateIds.txt");
-        List<String> ids = null;
-        try {
-            ids = FileUtils.readLines(pfile, "utf-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(ids!=null && ids.size()>0) {
-            ExportTVJsonFromWebApi exportTVJsonFromWebApi = new ExportTVJsonFromWebApi();
-            exportTVJsonFromWebApi.updateProgramFiles(ids);
-        }
+    static void exportWithUpdateAll(){
+        ExportTVJsonFromWebApi exportTVJsonFromWebApi = new ExportTVJsonFromWebApi();
+        exportTVJsonFromWebApi.checkNew();
     }
 
-    static void downloadTs(){
+    static void createPic(){
         List<Program> programs = new ArrayList<>();
-        File pfile = new File("json", "program.txt");
+        File pfile = new File("json", "tvprogram.txt");
         try {
             String json = FileUtils.readFileToString(pfile, "utf-8");
             JsonResult jsonResult = new Gson().fromJson(json, JsonResult.class);
@@ -45,8 +53,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DownTs downTs = new DownTs(programs);
-        downTs.start();
+        CreatePic createPic = new CreatePic(programs);
+        createPic.start();
     }
 
     static void removeErrProgram(){
@@ -56,7 +64,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        File pfile = new File("json", "program.txt");
+        File pfile = new File("json", "tvprogram.txt");
         if (pfile.exists()) {
             try {
                 String json = FileUtils.readFileToString(pfile, "utf-8");
@@ -75,8 +83,8 @@ public class Main {
         }
     }
 
-    static void initPicCreated(){
-        File pfile = new File("json", "program.txt");
+    static void checkProgramPic(){
+        File pfile = new File("json", "tvprogram.txt");
         if (pfile.exists()) {
             try {
                 String json = FileUtils.readFileToString(pfile, "utf-8");
@@ -99,73 +107,22 @@ public class Main {
         }
     }
 
-    static void createPic() {
-        File pfile = new File("json", "program.txt");
-        HashSet<String> programSet = new HashSet<>();
-        if (pfile.exists()) {
-            try {
-                String json = FileUtils.readFileToString(pfile, "utf-8");
-                JsonResult jsonResult = new Gson().fromJson(json, JsonResult.class);
-                for (Channel channel : jsonResult.channels) {
-                    for (Program item : channel.programs) {
-                        String filename = item.identifier;
-                        String[] us = item.identifier.split("-");
-                        //ffmpeg -ss 00:00:06 -i m.ts -f image2 -y -vframes 1 img.jpeg
-
-                        File tsFile = new File("ts", item.identifier + ".ts");
-                        if (tsFile.exists()) {
-                            //String mediaUrl = "http://amtbsg.cloudapp.net/redirect/vod/_definst_/mp4/" + us[0] + "/" + item.identifier + "/" + item.filename + "/playlist.m3u8";
-                            String mediaUrl = tsFile.getAbsolutePath();
-
-                            boolean t = CreateProgramPicByFFMpeg.makeScreenCut(mediaUrl, "00:00:06", item.identifier + "_bg.jpg", item.identifier + "_card.jpg", false);
-                            if (t)
-                                System.out.println("创建完成" + filename);
-                        }
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    static void updateIds(){
+        File pfile = new File("updateIds.txt");
+        List<String> ids = null;
+        try {
+            ids = FileUtils.readLines(pfile, "utf-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(ids!=null && ids.size()>0) {
+            ExportTVJsonFromWebApi exportTVJsonFromWebApi = new ExportTVJsonFromWebApi();
+            exportTVJsonFromWebApi.updateProgramFiles(ids);
         }
     }
 
-    static void exportWithUpdateAll(){
-        ExportTVJsonFromWebApi exportTVJsonFromWebApi = new ExportTVJsonFromWebApi();
-        exportTVJsonFromWebApi.checkNew();
-    }
-
-    static void remove(){
-        File pfile = new File("json", "program.txt");
-        HashSet<String> programSet = new HashSet<>();
-        if(pfile.exists()) {
-            try {
-                String json = FileUtils.readFileToString(pfile, "utf-8");
-                JsonResult jsonResult = new Gson().fromJson(json, JsonResult.class);
-                for(Channel channel : jsonResult.channels){
-                    Iterator<Program> iterator = channel.programs.iterator();
-                    while (iterator.hasNext()){
-                        Program program = iterator.next();
-                        if(programSet.contains(program.identifier)){
-                            iterator.remove();
-                        } else {
-                            programSet.add(program.identifier);
-                        }
-                    }
-                }
-
-                try {
-                    FileUtils.write(pfile, new Gson().toJson(jsonResult), "utf-8");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    static void printProgramCount(){
-        File pfile = new File("json", "program.txt");
+    static void printPrograms(){
+        File pfile = new File("json", "tvprogram.txt");
         HashSet<String> programSet = new HashSet<>();
         if(pfile.exists()) {
             try {
