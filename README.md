@@ -1,6 +1,6 @@
 # AmtbTV节目创建工具
 本软件用于为AmtbTV创建节目列表，并生成缩图。<br>
-创建的节目列表文件为：json/tvprogram.txt
+创建的节目列表文件为：json/tvprogram.txt<br>
 ##本软件使用FFMpeg生成缩略图
 请安装FFMpeg软件，并加入运行路径中，可以通过输入ffmpeg在当前目录下运行。
 ##简单使用
